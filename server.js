@@ -6,8 +6,18 @@ const server = http.createServer((req,res)=>{
     console.log(req.url);
     console.log(req.method); */
 
+    let path='./docs/';
+
+    if(req.url=='/home' || req.url=='/'){
+        path+='home.html';
+    }else if(req.url=='/index' ){
+        path+='index.html';
+    }else {
+        path+='error.html';
+    }
+
     res.setHeader('Content-Type', 'text/html');
-    fs.readFile('./docs/index.html',(err,data)=>{
+    fs.readFile(path,(err,data)=>{
         if(err){
             console.log(err.message);
             res.end();
